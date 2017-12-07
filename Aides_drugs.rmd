@@ -21,7 +21,10 @@ Three new preventative aides drugs were tested in clinical trials in 2015. The t
 #Methods
 
 In order to obtain the results needed in order to properly interpret the effectiveness of the drugs, we are going to run several tests. In order to gather graphical results, we are going to run barchatrts for each region that was tested. However, in order to properly organize the information, we need to seperate the data by sex. Therefore, we are going to filter the data so that we have data for females, males, and both sexes. To gather the numerical data, we are going to create tables for each sex group with each part of the globe respectivley. After we gather the numerical data, we are also going to run several chi-squared tests in order to be able to observe the P-value and interpret the null hypothesis. 
+
+
 ##Results
+
 
 ##Graphical Results
 
@@ -36,7 +39,7 @@ We will subset the data by sex to see if the drug is sex specific.
 ScarolinaM <- filter(Scarolina,sex=="M")
 barchartGC(~infected + group, data=ScarolinaM, type="percent")
 ```
-
+Based on the barchart, it appears the drug was not effective at preventing the males from obtaining the HIV/Aids virus. Roughly 57% of the people in the HIV group got the virus after taking the drug. Therefore if anything, it only appeared to make things worse. When observing those who took the placebo drug, less males have the HIV virus.
 
 #South Carolina:Females
 
@@ -46,13 +49,14 @@ ScarolinaF <- filter(Scarolina, sex=="F")
 barchartGC(~infected + group, data=ScarolinaF, type="percent")
 ```
 
+When observing the female barchart of those from South Carolina, it appears more people from the aids group took the placebo. Therefore, with there being more people with the placebo, it appears the drug was effective for females. When observing the group that did not have AIDS, there appears to be no difference in the percentages between those who got AIDS and those who did not have AIDS.
 #South Carolina: Both
 
 
 ```{r}
 barchartGC(~infected + group, data=Scarolina, type="percent")
 ```
-
+When observing the total population group as a whole, it appears there was a slightly higher percentage of people who took the placebo then there was of those who took the drug. Therefore, as a whole, it appears that the drug was effective at treating HIV/AIDS. However, in our previous tables, it appeared the drug was more effective for females than it was for males. When observing the group who did not have HIV/AIDs, it appears there was no difference in the percentage of those who had HIV/AIDs and those who did not have the virus. 
 # Central Africa
 
 We will subset the data by sex to see if the drug is sex specific.
@@ -66,6 +70,7 @@ cenAfricaM <- filter(cenAfrica,sex=="M")
 barchartGC(~infected + group, data=cenAfricaM, type="percent")
 ```
 
+When observing the effectiveness of the drug for the male population group in Central Africa, we can see there is a slightly higher percentage of those who had the placebo after taking the drug. Therefore, the drug was slightly effective at treating HIV/AIDS. When observing the group who did not have HIV/AIDS, there was no difference in the percentages of those who did not have the virus after taking the drug and the placebo. 
 #Central Africa: Females
 
 
@@ -73,17 +78,25 @@ barchartGC(~infected + group, data=cenAfricaM, type="percent")
 cenAfricaF <- filter(cenAfrica,sex=="F")
 barchartGC(~infected + group, data=cenAfricaF, type="percent")
 ```
+
+When observing the female population group, we notice there was a higher percentage of those with the placebo then there were with AIDS. Therefore, it appears the drug was effective at also treating the female population in Central Africa. When observing the group who did not have HIV/AIDS, there is no significant difference in the percentages of those who did have AIDS after taking the drug and the placebo. 
+
 #Central Africa:Both
+
 
 
 ```{r}
 barchartGC(~infected + group, data=cenAfrica, type="percent")
 ```
 
+
+When obvserving the total population group in Central Africa, it appears the drug was effective at treating HIV/AIDS. We noticed from our previous results that the drug was effective for both the male and female population. As we observe the group who did not have HIV/AIDs, there was no difference in percentages of those who who took the drug and the placebo. 
 # Korea
 
 
 We will subset the data by sex to see if the drug is sex specific.
+
+
 #Korea: Males
 
 
@@ -92,7 +105,7 @@ koreaM <- filter(korea,sex=="M")
 barchartGC(~infected + group, data=koreaM, type="percent")
 ```
 
-
+When observing the male population group in Korea, it appears the drug was effective at treating HIV/AIDS as there was a higher percentage of those with the placebo then those with aids. When observing the group that did not have the virus, it appears there was no significant difference between the those who took the drug and those who took the placebo. 
 #Korea: Females
 
 
@@ -101,7 +114,7 @@ koreaF <- filter(korea,sex=="F")
 barchartGC(~infected + group, data=koreaF, type="percent")
 ```
 
-
+When observing the female population, we notice that there was a higher percentage of those who did have HIV/AIDS than those with the placebo. Therefore, the drug was not effective for women in Korea. As we observe the group who did not have HIV/AIDS, we notice there was no significant difference between those who took the placebo and those who took the drug. 
 #Korea: Both
 
 
@@ -109,6 +122,7 @@ barchartGC(~infected + group, data=koreaF, type="percent")
 barchartGC(~infected + group, data=korea, type="percent")
 ```
 
+When observing the entire population group in Korea, it appears the drug was efffective at treating HIV/AIDS. However, from our previous barcharts, we were able to see there was a difference between the effectiveness of the drug in males and females. The drug was not effective for the female population in comparison to the male population. As we observe the group who did not have HIV/AIDS, there was no overall difference in those who took the drug, and those who took the placebo. 
 #Numerical Results
 
 
@@ -123,6 +137,7 @@ ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
 rowPerc(ScarolinaF_table)
 ```
 
+When observing the female population, we notice there was a higher percentage of those who took the placebo at approximatley 61%. There was only about 39% of the feamle population group who had HIV/AIDS. Therefore the drug was effective at treating the virus. There was no significant difference in the results of the group who did not have the virus after some took the drug and those who took the placebo.
 
 #Males:
 
@@ -131,7 +146,7 @@ rowPerc(ScarolinaF_table)
 ScarolinaM_table <- xtabs(~infected + group, data = ScarolinaM)
 rowPerc(ScarolinaM_table)
 ```
-
+When observing the male poulation, there 57% of the population had HIV/AIDS after taking the drug. There was a lower percentage of those with the placebo at approximatlely 43%. Therefore, the drug was not effective at treating the virus in males in South Carolina. There was no significant difference in the group who did not have the virus after some took the drug and the placebo. 
 
 #Both: 
 
@@ -141,7 +156,7 @@ Scarolina_table <- xtabs(~infected + group, data = Scarolina)
 rowPerc(Scarolina_table)      
 ```
 
-
+When observing the entire population group as a whole, the drug was slighly effective at treating the HIV virus. From the population, 50% of the group did not have HIV and 49% did have HIV after taking the drug. Therefore, the results were very close in how effective the drug actually was. There was no difference in the group who did not have HIV/AIDS. 
 #Central Africa
 
 
@@ -153,6 +168,7 @@ cenAfricaF_table <- xtabs(~infected + group, data = cenAfricaF)
 rowPerc(cenAfricaF_table)
 ```
 
+When observing the female population group of those who did have HIV/AIDS, there was a higher percentage of those who had the placebo at approximaltey 53%. About 47% of the population had HIV/AIDS after taking the drug. Therefore, the drug was effective at treating the virus for the female population in Central Africa. There was no difference from the group who did not have HIV/AIDS after taking the placebo or the drug. 
 
 #Males:
 
@@ -161,7 +177,7 @@ rowPerc(cenAfricaF_table)
 cenAfricaM_table <- xtabs(~infected + group, data = cenAfricaM)
 rowPerc(cenAfricaM_table)
 ```
-
+When observing the male population group in Central Africa, it appears the drug was slightly effective at treating the HIV virus. About 49% of the drug population did have the virus and 50% of the group had the placebo. However, the results are very close between the two groups. There was no significant differnce in the group that did not orginially have HIV after taking the drug or the placebo.
 
 #Both: 
 
@@ -171,7 +187,7 @@ cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
 rowPerc(cenAfrica_table)
 ```
 
-
+When observing the entire population of Central Africa, it appears the drug was effective in treating the virus. There was a higher percentag of those who had the placebo at about 52%. There was a lower amount of those who had HIV/AIDS with those who took the drug at approximatley 48%. There was no difference in the group who did not have the virus. 
 #Korea:
 
 
@@ -183,6 +199,7 @@ koreaF_table <- xtabs(~infected + group, data = koreaF)
 rowPerc(koreaF_table)
 ```
 
+When observing the female population group in Korea, it appears there was a higher percentage of those who did have HIV after taking the drug at approximaltye 65%. There was about 35% of the population who took the placebo. Therefore, the drug was not effective at treating the HIV virus for the feamle population. There was no signifcant difference in the group who did not have HIV after taking the drug or the placebo. 
 
 #Males:
 
@@ -192,6 +209,7 @@ koreaM_table <- xtabs(~infected + group, data = koreaM)
 rowPerc(koreaM_table)
 ```
 
+When observing the male population group in Korea, there is a higher percentage of those who took the placebo at approximatley 67%. There was only about 33% of the population that did not have the HIV/AIDS virus. Therefore, the drug was effective at treating the virus in males for the population group in Korea. There was no difference in the population group that did not have HIV between those who took the placebo and those who took the drug. 
 
 #Both:
 
@@ -201,6 +219,7 @@ korea_table <- xtabs(~infected + group, data= korea)
 rowPerc(korea_table)
 ```
 
+When observing the entire population of Korea, it appears the drug was effective at treating the HIV virus. There was a higher percentage of those who took the placebo who had the virus than those who took the drug at approximatley 56% and 44% respetively. When observing the group who did not have HIV, there was no difference between those who took the drug and those who took the placebo. 
 
 #Inferential Results
 
@@ -214,18 +233,27 @@ rowPerc(korea_table)
 chisqtestGC(ScarolinaF_table)
 ```
 
+When observing the female population group of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is below 0.05, so therefore we have to reject the null hypothesis.Therefore, the drug may not be specific for women. However, there is no difference found in the group who did not have the HIV virus. 
 #Males:   
 
 
 ```{r}
 chisqtestGC(ScarolinaM_table)
 ```
-#Both:  
+
+When observing the male population group of South Carolina of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is above 0.05, so therefore we have to accept the null hypothesis. Therefore, the drug may be specific to males. However, there is no difference found in the group who did not have the HIV virus. 
+#Males:   
+
+#Both:
+
 
 
 ```{r}
 chisqtestGC(Scarolina_table)
 ```
+When observing the entire population group of South Carolina of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is above 0.05, so therefore we have to accept the null hypothesis.Therefore, the drug does not appear to be specific to that general population. However, there is no difference found in the group who did not have the HIV virus. 
+
+
 #Centeral Africa
 
 
@@ -235,7 +263,7 @@ chisqtestGC(Scarolina_table)
 ```{r}
 chisqtestGC(cenAfricaF_table)
 ```
-
+When observing the male population group of Central Africa of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is above 0.05, so therefore we have to accept the null hypothesis.Therefore, it does not appear to be specific to the female population. However, there is no difference found in the group who did not have the HIV virus. 
 
 #Males:
 
@@ -243,13 +271,15 @@ chisqtestGC(cenAfricaF_table)
 ```{r}
 chisqtestGC(cenAfricaM_table)
 ```
-
+When observing the male population group of Central Africa of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is above 0.05, so therefore we have to accept the null hypothesis.The drug appears to be specific towards males. However, there is no difference found in the group who did not have the HIV virus. 
 
 #Both
 
 ```{r}
 chisqtestGC(cenAfrica_table)
 ```
+When observing the male population group of Central Africa of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is above 0.05, so therefore we have to accept the null hypothesis. Therefore, the drug may be specific at treating the virus for the population. However, there is no difference found in the group who did not have the HIV virus. 
+
 
 #Korea
 
@@ -261,7 +291,7 @@ chisqtestGC(cenAfrica_table)
 ```{r}
 chisqtestGC(koreaF_table)
 ```
-
+When observing the female population group of Korea  of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is below 0.05, so therefore we have to accept the null hypothesis.The vaccine may not be specific to the female population of Korea. However, there is no difference found in the group who did not have the HIV virus. 
 
 #Males:
 
@@ -269,7 +299,7 @@ chisqtestGC(koreaF_table)
 ```{r}
 chisqtestGC(koreaM_table)
 ```
-
+When observing the male population group of Korea of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is below 0.05, so therefore we have to accept the null hypothesis. Therefore, the drug may not be specifc to the male population of Korea. However, there is no difference found in the group who did not have the HIV virus. 
 
 #Both:
 
@@ -277,6 +307,16 @@ chisqtestGC(koreaM_table)
 ```{r}
 chisqtestGC(korea_table)
 ```
+When observing the entire population group of Korea of those who took the placebo and those who took the drug, the nulll hypothesis states there will be no difference in the results. However, the p-value is above 0.05, so therefore we have to accept the null hypothesis.Therefore, the drug may be spefici to the population of Korea. However, there is no difference found in the group who did not have the HIV virus. 
+
+
+#Conclusion  
+
+
+In conclusion, in South Carolina, the drug was more effective at treating HIV for the female population than the male population. For the population in Central Africa, the drug was not specific to sex, and was effective for both groups. In Korea, the drug was more effective for treating HIV in males than it was at treating HIV in females. I would recommend for the 32 year old female, to take the drug in South Carolina as it was more effective at treating HIV. I would recommend for her not to take the drugs that were used in Central Africa and Korea. Although the drug was barley effective in Central Africa for women, there is still a higher chance of it not working. The drug was not effective for women in Korea. 
+For the 27 year old male, I would suggest for him to take the drug that was found in Korea. The drug in Korea was the most effective for males than the drugs used in South Carolina and Central Africa. 
+
+
 
 
 
