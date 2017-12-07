@@ -36,20 +36,140 @@ barchartGC(~infected + group, data=ScarolinaM, type="percent")
 ScarolinaF <- filter(Scarolina, sex=="F")
 barchartGC(~infected + group, data=ScarolinaF, type="percent")
 ```
+#South Carolina: Both
+```{r}
+barchartGC(~infected + group, data=Scarolina, type="percent")
+```
 
 # Central Africa
 
 We will subset the data by sex to see if the drug is sex specific.
 ##Centeral Africa:Males
 ```{r}
-
+cenAfricaM <- filter(cenAfrica,sex=="M")
+barchartGC(~infected + group, data=cenAfricaM, type="percent")
 ```
 
-
+#Central Africa: Females
+```{r}
+cenAfricaF <- filter(cenAfrica,sex=="F")
+barchartGC(~infected + group, data=cenAfricaF, type="percent")
+```
+#Central Africa:Both
+```{r}
+barchartGC(~infected + group, data=cenAfrica, type="percent")
+```
 
 # Korea
-
 We will subset the data by sex to see if the drug is sex specific.
+#Korea: Males
+```{r}
+koreaM <- filter(korea,sex=="M")
+barchartGC(~infected + group, data=koreaM, type="percent")
+```
+
+#Korea: Females
+```{r}
+koreaF <- filter(korea,sex=="F")
+barchartGC(~infected + group, data=koreaF, type="percent")
+```
+#Korea: Both
+```{r}
+barchartGC(~infected + group, data=korea, type="percent")
+```
+
+#Numerical Results
+#south Carolina 
+#Females: 
+```{r}
+ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
+rowPerc(ScarolinaF_table)
+```
+#Males:
+```{r}
+ScarolinaM_table <- xtabs(~infected + group, data = ScarolinaM)
+rowPerc(ScarolinaM_table)
+```
+#Both: 
+```{r}
+Scarolina_table <- xtabs(~infected + group, data = Scarolina)
+rowPerc(Scarolina_table)      
+```
+
+#Central Africa
+#Females:
+```{r}
+cenAfricaF_table <- xtabs(~infected + group, data = cenAfricaF)
+rowPerc(cenAfricaF_table)
+```
+#Males:
+```{r}
+cenAfricaM_table <- xtabs(~infected + group, data = cenAfricaM)
+rowPerc(cenAfricaM_table)
+```
+#Both: 
+```{r}
+cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
+rowPerc(cenAfrica_table)
+```
+#Korea:
+#Females:
+```{r}
+koreaF_table <- xtabs(~infected + group, data = koreaF)
+rowPerc(koreaF_table)
+```
+#Males:
+```{r}
+koreaM_table <- xtabs(~infected + group, data = koreaM)
+rowPerc(koreaM_table)
+```
+#Both:
+```{r}
+korea_table <- xtabs(~infected + group, data= korea)
+rowPerc(korea_table)
+```
+
+#Inferential Results
+#South Carolina 
+#Females: 
+```{r}
+chisqtestGC(ScarolinaF_table)
+```
+
+#Males: 
+```{r}
+chisqtestGC(ScarolinaM_table)
+```
+#Both: 
+```{r}
+chisqtestGC(Scarolina_table)
+```
+#Centeral Africa
+#Females:
+```{r}
+chisqtestGC(cenAfricaF_table)
+```
+#Males:
+```{r}
+chisqtestGC(cenAfricaM_table)
+```
+#Both
+```{r}
+chisqtestGC(cenAfrica_table)
+```
+#Korea
+#Females:
+```{r}
+chisqtestGC(koreaF_table)
+```
+#Males:
+```{r}
+chisqtestGC(koreaM_table)
+```
+#Both:
+```{r}
+chisqtestGC(korea_table)
+```
 
 #Introduction 
 
