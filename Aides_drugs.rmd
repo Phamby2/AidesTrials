@@ -1,7 +1,7 @@
 ---
 title: "Aides Tests"
-author: "Dr K"
-date: "May 24, 2017"
+author: "Paul Hamby "
+date: "December 6, 2017"
 output: html_document
 ---
 
@@ -18,6 +18,9 @@ cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
 
 Three new preventative aides drugs were tested in clinical trials in 2015. The trial designs were modeled after the famous RV_144 Aides Trials in Tailand in 2009.  Analyze and report on the apparent effectiveness of the three different drugs. Does sex of the participant seem to be a factor for any of the drugs?
 
+#Methods
+
+In order to obtain the results needed in order to properly interpret the effectiveness of the drugs, we are going to run several tests. In order to gather graphical results, we are going to run barchatrts for each region that was tested. However, in order to properly organize the information, we need to seperate the data by sex. Therefore, we are going to filter the data so that we have data for females, males, and both sexes. To gather the numerical data, we are going to create tables for each sex group with each part of the globe respectivley. After we gather the numerical data, we are also going to run several chi-squared tests in order to be able to observe the P-value and interpret the null hypothesis. 
 ##Results
 
 ##Graphical Results
@@ -26,17 +29,26 @@ Three new preventative aides drugs were tested in clinical trials in 2015. The t
 # South Carolina
 
 We will subset the data by sex to see if the drug is sex specific.
+
 #South Carolina:Males
+
 ```{r}
 ScarolinaM <- filter(Scarolina,sex=="M")
 barchartGC(~infected + group, data=ScarolinaM, type="percent")
 ```
+
+
 #South Carolina:Females
+
+
 ```{r}
 ScarolinaF <- filter(Scarolina, sex=="F")
 barchartGC(~infected + group, data=ScarolinaF, type="percent")
 ```
+
 #South Carolina: Both
+
+
 ```{r}
 barchartGC(~infected + group, data=Scarolina, type="percent")
 ```
@@ -44,139 +56,229 @@ barchartGC(~infected + group, data=Scarolina, type="percent")
 # Central Africa
 
 We will subset the data by sex to see if the drug is sex specific.
+
+
 ##Centeral Africa:Males
+
+
 ```{r}
 cenAfricaM <- filter(cenAfrica,sex=="M")
 barchartGC(~infected + group, data=cenAfricaM, type="percent")
 ```
 
 #Central Africa: Females
+
+
 ```{r}
 cenAfricaF <- filter(cenAfrica,sex=="F")
 barchartGC(~infected + group, data=cenAfricaF, type="percent")
 ```
 #Central Africa:Both
+
+
 ```{r}
 barchartGC(~infected + group, data=cenAfrica, type="percent")
 ```
 
 # Korea
+
+
 We will subset the data by sex to see if the drug is sex specific.
 #Korea: Males
+
+
 ```{r}
 koreaM <- filter(korea,sex=="M")
 barchartGC(~infected + group, data=koreaM, type="percent")
 ```
 
+
 #Korea: Females
+
+
 ```{r}
 koreaF <- filter(korea,sex=="F")
 barchartGC(~infected + group, data=koreaF, type="percent")
 ```
+
+
 #Korea: Both
+
+
 ```{r}
 barchartGC(~infected + group, data=korea, type="percent")
 ```
 
 #Numerical Results
+
+
 #south Carolina 
+
+
 #Females: 
+
+
 ```{r}
 ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
 rowPerc(ScarolinaF_table)
 ```
+
+
 #Males:
+
+
 ```{r}
 ScarolinaM_table <- xtabs(~infected + group, data = ScarolinaM)
 rowPerc(ScarolinaM_table)
 ```
+
+
 #Both: 
+
+
 ```{r}
 Scarolina_table <- xtabs(~infected + group, data = Scarolina)
 rowPerc(Scarolina_table)      
 ```
 
+
 #Central Africa
+
+
 #Females:
+
+
 ```{r}
 cenAfricaF_table <- xtabs(~infected + group, data = cenAfricaF)
 rowPerc(cenAfricaF_table)
 ```
+
+
 #Males:
+
+
 ```{r}
 cenAfricaM_table <- xtabs(~infected + group, data = cenAfricaM)
 rowPerc(cenAfricaM_table)
 ```
+
+
 #Both: 
+
+
 ```{r}
 cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
 rowPerc(cenAfrica_table)
 ```
+
+
 #Korea:
+
+
 #Females:
+
+
 ```{r}
 koreaF_table <- xtabs(~infected + group, data = koreaF)
 rowPerc(koreaF_table)
 ```
+
+
 #Males:
+
+
 ```{r}
 koreaM_table <- xtabs(~infected + group, data = koreaM)
 rowPerc(koreaM_table)
 ```
+
+
 #Both:
+
+
 ```{r}
 korea_table <- xtabs(~infected + group, data= korea)
 rowPerc(korea_table)
 ```
 
+
 #Inferential Results
+
+
 #South Carolina 
+
+
 #Females: 
+
 ```{r}
 chisqtestGC(ScarolinaF_table)
 ```
 
-#Males: 
+#Males:   
+
+
 ```{r}
 chisqtestGC(ScarolinaM_table)
 ```
-#Both: 
+#Both:  
+
+
 ```{r}
 chisqtestGC(Scarolina_table)
 ```
 #Centeral Africa
+
+
 #Females:
+
+
 ```{r}
 chisqtestGC(cenAfricaF_table)
 ```
+
+
 #Males:
+
+
 ```{r}
 chisqtestGC(cenAfricaM_table)
 ```
+
+
 #Both
+
 ```{r}
 chisqtestGC(cenAfrica_table)
 ```
+
 #Korea
+
+
+
 #Females:
+
+
 ```{r}
 chisqtestGC(koreaF_table)
 ```
+
+
 #Males:
+
+
 ```{r}
 chisqtestGC(koreaM_table)
 ```
+
+
 #Both:
+
+
 ```{r}
 chisqtestGC(korea_table)
 ```
 
-#Introduction 
 
-
-
-
-#Methods
 
 
 
